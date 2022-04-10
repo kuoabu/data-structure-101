@@ -1,3 +1,1 @@
-export default (name: String): String => {
-  return `hello ${name}`;
-}
+export default (name: String): String => `hello ${name}`;
