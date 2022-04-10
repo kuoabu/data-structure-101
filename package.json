@@ -5,5 +5,12 @@
   "engines": {
     "node": ">=16",
     "npm": "please-use-yarn"
+  },
+  "scripts": {
+    "clean-build": "rm -rf dist",
+    "build": "yarn clean-build && tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.3"
   }
 }
