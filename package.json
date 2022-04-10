@@ -1,0 +1,9 @@
+{
+  "name": "data-structure-101",
+  "packageManager": "yarn@3.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=16",
+    "npm": "please-use-yarn"
+  }
+}
