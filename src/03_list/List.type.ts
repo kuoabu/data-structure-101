@@ -1,6 +1,8 @@
-export type Item = Number;
-export type Index = Number;
+export type Item = number;
+export type Index = number;
 export interface List {
-  isEmpty(): Boolean;
-  count(): Number;
+  isEmpty(): boolean;
+  count(): number;
+  insertItem(index: Index, item: Item): void;
+  locateItem(item: Item): Index;
 }
