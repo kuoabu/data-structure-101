@@ -9,15 +9,19 @@
   "scripts": {
     "clean-build": "rm -rf dist",
     "build": "yarn clean-build && tsc",
-    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx"
+    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "latest",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
   }
 }
