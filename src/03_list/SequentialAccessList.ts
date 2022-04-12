@@ -10,4 +10,9 @@ export default class SequentialAccessList implements Types.List {
   isEmpty(): Boolean {
     return !!this.space.length;
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  count(): Number {
+    throw new Error('Method not implemented.');
+  }
 }

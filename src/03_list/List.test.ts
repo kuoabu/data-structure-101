@@ -9,9 +9,15 @@ describe('List', () => {
     });
   });
 
-  describe('isEmpty', () => {
+  describe('isEmpty()', () => {
     it('should be fine', () => {
       expect(new List().isEmpty()).toBeTruthy();
+    });
+  });
+
+  describe('count()', () => {
+    it('should be fine', () => {
+      expect(new List().count()).toBe(0);
     });
   });
 });
