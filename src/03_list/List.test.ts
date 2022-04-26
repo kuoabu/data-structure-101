@@ -16,9 +16,48 @@ describe('List', () => {
     });
   });
 
+  describe('clear()', () => {
+    it('should works fine', () => {
+      let subject = new List();
+      expect(subject.count()).toBe(0);
+
+      subject.insertItem(0, 0);
+      subject.clear();
+
+      expect(subject.count()).toBe(0);
+    });
+  });
+
+  describe('getItem()', () => {
+    it('should works fine', () => {
+      let subject = new List();
+      expect(subject.getItem(0)).toThrow('Item not found.');
+
+      subject.insertItem(0, 0);
+      subject.insertItem(1, 1);
+
+      expect(subject.getItem(0)).toBe(0);
+      expect(subject.getItem(1)).toBe(1);
+    });
+  });
+
   describe('count()', () => {
     it('should be fine', () => {
       expect(new List().count()).toBe(0);
+    });
+  });
+
+  describe('removeItem()', () => {
+    it('should works fine', () => {
+      let subject = new List();
+      expect(subject.removeItem(0)).toThrow('Item not found.');
+
+      subject.insertItem(0, 0);
+      subject.insertItem(1, 1);
+
+      expect(subject.removeItem(0)).toBe(0);
+      expect(subject.getItem(0)).toBe(1);
+      expect(subject.count()).toBe(1);
     });
   });
 
