@@ -8,30 +8,36 @@ export default class SequentialAccessList implements Types.List {
   }
 
   isEmpty(): boolean {
-    return !!this.space.length;
+    return this.space.length === 0;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   count(): number {
     return this.space.length;
   }
 
-  clear(): void {}
-
-  getItem(index: number): Types.Item {
-    return this.space[0];
-    // throw new Error('Item not found.');
+  clear(): void {
+    this.space = [];
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
+  getItem(index: number): Types.Item {
+    const item = this.space[index];
+    if (item === undefined) {
+      throw new Error('Item not found.');
+    }
+    return item;
+  }
+
   insertItem(index: number, item: number): void {
     this.space.splice(index, 0, item);
-    // throw new Error('Method not implemented.');
   }
 
   removeItem(index: number): Types.Item {
-    return this.space[0];
-    // throw new Error('Item not found.');
+    const item = this.space[index];
+    if (item === undefined) {
+      throw new Error('Item not found.');
+    }
+    this.space = this.space.filter((_, i) => i !== index);
+    return item;
   }
 
   locateItem(item: number): number {

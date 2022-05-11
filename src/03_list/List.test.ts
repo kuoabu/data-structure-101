@@ -31,7 +31,7 @@ describe('List', () => {
   describe('getItem()', () => {
     it('should works fine', () => {
       let subject = new List();
-      expect(subject.getItem(0)).toThrow('Item not found.');
+      expect(() => subject.getItem(0)).toThrow(new Error('Item not found.'));
 
       subject.insertItem(0, 0);
       subject.insertItem(1, 1);
@@ -50,7 +50,7 @@ describe('List', () => {
   describe('removeItem()', () => {
     it('should works fine', () => {
       let subject = new List();
-      expect(subject.removeItem(0)).toThrow('Item not found.');
+      expect(() => subject.removeItem(0)).toThrow(new Error('Item not found.'));
 
       subject.insertItem(0, 0);
       subject.insertItem(1, 1);
