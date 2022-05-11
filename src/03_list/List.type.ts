@@ -9,3 +9,7 @@ export interface List {
   removeItem(index: Index): Item;
   locateItem(item: Item): Index;
 }
+export interface Node {
+  value: Item;
+  next: Node | null;
+}
