@@ -10,12 +10,12 @@ class Node implements Types.Node {
 }
 
 export default class SingleLinkedList implements Types.List {
-  private _length: number;
   private _head: Types.Node | null;
+  private _length: number;
 
   constructor() {
-    this._length = 0;
     this._head = null;
+    this._length = 0;
   }
 
   isEmpty(): boolean {
@@ -28,6 +28,7 @@ export default class SingleLinkedList implements Types.List {
 
   clear(): void {
     this._head = null;
+    this._length = 0;
   }
 
   private _findNode(index: number): Types.Node | null {
@@ -58,12 +59,14 @@ export default class SingleLinkedList implements Types.List {
     if (index === 0) {
       newNode.next = this._head;
       this._head = newNode;
+      this._length++;
     }
 
     let prev = this._findNode(index - 1);
     if (prev) {
       newNode.next = prev.next;
       prev.next = newNode;
+      this._length++;
     } else {
       throw new Error('Item not found.');
     }
@@ -73,6 +76,7 @@ export default class SingleLinkedList implements Types.List {
     if (index === 0 && this._head) {
       let item = this._head.value;
       this._head = this._head.next;
+      this._length--;
       return item;
     }
 
@@ -80,6 +84,7 @@ export default class SingleLinkedList implements Types.List {
     if (prev && prev.next) {
       let item = prev.next.value;
       prev.next = prev.next.next;
+      this._length--;
       return item;
     } else {
       throw new Error('Item not found.');
