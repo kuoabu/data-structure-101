@@ -10,8 +10,8 @@ class Node implements Types.Node {
 }
 
 export default class SingleLinkedList implements Types.List {
-  protected _length: number;
-  protected _head: Types.Node | null;
+  private _length: number;
+  private _head: Types.Node | null;
 
   constructor() {
     this._length = 0;
