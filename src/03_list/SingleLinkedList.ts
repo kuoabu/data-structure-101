@@ -60,6 +60,7 @@ export default class SingleLinkedList implements Types.List {
       newNode.next = this._head;
       this._head = newNode;
       this._length++;
+      return;
     }
 
     let prev = this._findNode(index - 1);
@@ -95,7 +96,7 @@ export default class SingleLinkedList implements Types.List {
     let head = this._head;
     let count = 0;
     while (head) {
-      if ((item = head.value)) {
+      if (item === head.value) {
         return count;
       }
       count++;
