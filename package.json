@@ -10,7 +10,7 @@
     "clean-build": "rm -rf dist",
     "build": "yarn clean-build && tsc -p tsconfig.build.json",
     "eslint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
