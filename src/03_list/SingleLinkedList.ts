@@ -3,7 +3,7 @@ import * as Types from './List.type';
 class Node implements Types.Node {
   value: number;
   next: Types.Node | null;
-  constructor(item: number) {
+  constructor(item: Types.Item) {
     this.value = item;
     this.next = null;
   }
@@ -31,7 +31,7 @@ export default class SingleLinkedList implements Types.List {
     this._length = 0;
   }
 
-  private _findNode(index: number): Types.Node | null {
+  private _findNode(index: Types.Index): Types.Node | null {
     let head = this._head;
     let count = 0;
     while (head) {
@@ -44,7 +44,7 @@ export default class SingleLinkedList implements Types.List {
     return null;
   }
 
-  getItem(index: number): number {
+  getItem(index: Types.Index): Types.Item {
     let found = this._findNode(index);
     if (found) {
       return found.value;
@@ -53,7 +53,7 @@ export default class SingleLinkedList implements Types.List {
     }
   }
 
-  insertItem(index: number, item: number): void {
+  insertItem(index: Types.Index, item: Types.Item): void {
     let newNode = new Node(item);
 
     if (index === 0) {
@@ -73,7 +73,7 @@ export default class SingleLinkedList implements Types.List {
     }
   }
 
-  removeItem(index: number): number {
+  removeItem(index: Types.Index): Types.Item {
     if (index === 0 && this._head) {
       let item = this._head.value;
       this._head = this._head.next;
@@ -92,7 +92,7 @@ export default class SingleLinkedList implements Types.List {
     }
   }
 
-  locateItem(item: number): number {
+  locateItem(item: Types.Item): Types.Index {
     let head = this._head;
     let count = 0;
     while (head) {
