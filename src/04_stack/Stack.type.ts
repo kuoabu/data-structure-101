@@ -4,7 +4,7 @@ export interface Stack {
   isEmpty(): boolean;
   count(): number;
   clear(): void;
-  getTop(): Item;
+  getTop(): Item | undefined;
   push(item: Item): void;
-  pop(): Item;
+  pop(): Item | undefined;
 }

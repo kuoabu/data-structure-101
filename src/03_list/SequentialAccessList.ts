@@ -19,11 +19,8 @@ export default class SequentialAccessList implements Types.List {
     this.space = [];
   }
 
-  getItem(index: Types.Index): Types.Item {
+  getItem(index: Types.Index): Types.Item | undefined {
     const item = this.space[index];
-    if (item === undefined) {
-      throw new Error('Item not found.');
-    }
     return item;
   }
 
@@ -31,11 +28,8 @@ export default class SequentialAccessList implements Types.List {
     this.space.splice(index, 0, item);
   }
 
-  removeItem(index: Types.Index): Types.Item {
+  removeItem(index: Types.Index): Types.Item | undefined {
     const item = this.space[index];
-    if (item === undefined) {
-      throw new Error('Item not found.');
-    }
     this.space = this.space.filter((_, i) => i !== index);
     return item;
   }

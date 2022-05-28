@@ -31,7 +31,7 @@ export default class SingleLinkedList implements Types.List {
     this._length = 0;
   }
 
-  private _findNode(index: Types.Index): Types.Node | null {
+  private _findNode(index: Types.Index): Types.Node | undefined {
     let head = this._head;
     let count = 0;
     while (head) {
@@ -41,16 +41,15 @@ export default class SingleLinkedList implements Types.List {
       count++;
       head = head.next;
     }
-    return null;
+    return undefined;
   }
 
-  getItem(index: Types.Index): Types.Item {
+  getItem(index: Types.Index): Types.Item | undefined {
     let found = this._findNode(index);
     if (found) {
       return found.value;
-    } else {
-      throw new Error('Item not found.');
     }
+    return undefined;
   }
 
   insertItem(index: Types.Index, item: Types.Item): void {
@@ -68,12 +67,10 @@ export default class SingleLinkedList implements Types.List {
       newNode.next = prev.next;
       prev.next = newNode;
       this._length++;
-    } else {
-      throw new Error('Item not found.');
     }
   }
 
-  removeItem(index: Types.Index): Types.Item {
+  removeItem(index: Types.Index): Types.Item | undefined {
     if (index === 0 && this._head) {
       let item = this._head.value;
       this._head = this._head.next;
@@ -87,9 +84,8 @@ export default class SingleLinkedList implements Types.List {
       prev.next = prev.next.next;
       this._length--;
       return item;
-    } else {
-      throw new Error('Item not found.');
     }
+    return undefined;
   }
 
   locateItem(item: Types.Item): Types.Index {
