@@ -1,7 +1,7 @@
 import * as Types from './List.type';
 
 class Node implements Types.Node {
-  value: number;
+  value: Types.Item;
   next: Types.Node | null;
   constructor(item: Types.Item) {
     this.value = item;

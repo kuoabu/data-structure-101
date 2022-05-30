@@ -1,4 +1,4 @@
-export type Item = number;
+export type Item = number | string;
 export type Index = number;
 export interface List {
   isEmpty(): boolean;

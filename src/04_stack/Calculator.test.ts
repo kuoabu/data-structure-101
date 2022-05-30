@@ -13,8 +13,8 @@ describe('Calculator', () => {
       expect(subject.isNumeric('ab1')).toBe(false);
     });
     it('should be true when input is numeric', () => {
-      let cases = '0123456789';
-      cases.split('').forEach((c) => {
+      let cases = '0 1 2 3 4 5 6 7 8 9 10 11 999';
+      cases.split(' ').forEach((c) => {
         expect(subject.isNumeric(c)).toBe(true);
       });
     });
@@ -52,6 +52,15 @@ describe('Calculator', () => {
       expect(
         subject.operatorProced('/') - subject.operatorProced('-')
       ).toBeGreaterThan(0);
+    });
+  });
+
+  describe('toPrefix()', () => {
+    it('should generate prefix notaion correctly', () => {
+      const infix = '9 + ( 3 - 1 ) * 3 + 10 / 2';
+      const subject = new Calculator(infix);
+      const expected = '9 3 1 - 3 * + 10 2 / +';
+      expect(subject.toPostfix()).toBe(expected);
     });
   });
 });
