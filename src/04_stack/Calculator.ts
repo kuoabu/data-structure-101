@@ -1,4 +1,5 @@
 import * as Types from './Calculator.type';
+import * as StackTypes from './Stack.type';
 import { Stack } from './Stack';
 
 export class Calculator implements Types.Calculator {
@@ -100,7 +101,53 @@ export class Calculator implements Types.Calculator {
     return output.trim();
   }
 
+  getOperationNumbers(stack: StackTypes.Stack): number[] {
+    let num1 = Number(stack.pop());
+    let num2 = Number(stack.pop());
+    return [num2, num1];
+  }
+
   calc(): number {
-    return 0;
+    let stack = new Stack();
+    let space = ' ';
+
+    const prefixNotation = this.toPostfix();
+
+    prefixNotation.split(space).forEach((c) => {
+      if (this.isNumeric(c)) {
+        stack.push(c);
+      } else if (this.isOperator(c)) {
+        // 取前兩個算數子
+        const [num2, num1] = this.getOperationNumbers(stack);
+        if (num2 === undefined || num1 === undefined) {
+          throw new Error('Error: operation fail');
+        }
+
+        switch (c) {
+          case '+':
+            stack.push(num2 + num1);
+            break;
+          case '-':
+            stack.push(num2 - num1);
+            break;
+          case '*':
+            stack.push(num2 * num1);
+            break;
+          case '/':
+            if (num1 === 0) {
+              throw new Error('Error: devided by 0');
+            } else {
+              stack.push(num2 / num1);
+            }
+            break;
+        }
+      } else {
+        throw new Error(`Error: unknown token ${c}`);
+      }
+    });
+
+    // 輸出答案
+    let output = Number(stack.pop());
+    return output;
   }
 }

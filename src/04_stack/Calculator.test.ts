@@ -1,4 +1,5 @@
 import { Calculator } from './Calculator';
+import { Stack } from './Stack';
 
 describe('Calculator', () => {
   describe('isNumeric()', () => {
@@ -61,6 +62,26 @@ describe('Calculator', () => {
       const subject = new Calculator(infix);
       const expected = '9 3 1 - 3 * + 10 2 / +';
       expect(subject.toPostfix()).toBe(expected);
+    });
+  });
+
+  describe('getOperationNumbers()', () => {
+    it('should return top 2 numbers in stack', () => {
+      const subject = new Calculator('');
+      const stack = new Stack();
+      stack.push(9);
+      stack.push(6);
+      const expected = [9, 6];
+      expect(subject.getOperationNumbers(stack)).toEqual(expected);
+    });
+  });
+
+  describe('calc()', () => {
+    it('should output calculate answer correctly', () => {
+      const infix = '9 + ( 3 - 1 ) * 3 + 10 / 2';
+      const subject = new Calculator(infix);
+      const expected = 20;
+      expect(subject.calc()).toBe(expected);
     });
   });
 });
