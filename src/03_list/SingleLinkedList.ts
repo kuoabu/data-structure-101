@@ -1,51 +1,44 @@
 import * as Types from './List.type';
-
-class Node implements Types.Node {
-  value: Types.Item;
-  next: Types.Node | null;
-  constructor(item: Types.Item) {
-    this.value = item;
-    this.next = null;
-  }
-}
+import Node from './Node';
 
 export default class SingleLinkedList implements Types.List {
-  private _head: Types.Node | null;
-  private _length: number;
+  private head: Types.Node | null;
+
+  private length: number;
 
   constructor() {
-    this._head = null;
-    this._length = 0;
+    this.head = null;
+    this.length = 0;
   }
 
   isEmpty(): boolean {
-    return this._length === 0;
+    return this.length === 0;
   }
 
   count(): number {
-    return this._length;
+    return this.length;
   }
 
   clear(): void {
-    this._head = null;
-    this._length = 0;
+    this.head = null;
+    this.length = 0;
   }
 
-  private _findNode(index: Types.Index): Types.Node | undefined {
-    let head = this._head;
+  private findNode(index: Types.Index): Types.Node | undefined {
+    let { head } = this;
     let count = 0;
     while (head) {
       if (index === count) {
         return head;
       }
-      count++;
+      count += 1;
       head = head.next;
     }
     return undefined;
   }
 
   getItem(index: Types.Index): Types.Item | undefined {
-    let found = this._findNode(index);
+    const found = this.findNode(index);
     if (found) {
       return found.value;
     }
@@ -53,49 +46,49 @@ export default class SingleLinkedList implements Types.List {
   }
 
   insertItem(index: Types.Index, item: Types.Item): void {
-    let newNode = new Node(item);
+    const newNode = new Node(item);
 
     if (index === 0) {
-      newNode.next = this._head;
-      this._head = newNode;
-      this._length++;
+      newNode.next = this.head;
+      this.head = newNode;
+      this.length += 1;
       return;
     }
 
-    let prev = this._findNode(index - 1);
+    const prev = this.findNode(index - 1);
     if (prev) {
       newNode.next = prev.next;
       prev.next = newNode;
-      this._length++;
+      this.length += 1;
     }
   }
 
   removeItem(index: Types.Index): Types.Item | undefined {
-    if (index === 0 && this._head) {
-      let item = this._head.value;
-      this._head = this._head.next;
-      this._length--;
+    if (index === 0 && this.head) {
+      const item = this.head.value;
+      this.head = this.head.next;
+      this.length -= 1;
       return item;
     }
 
-    let prev = this._findNode(index - 1);
+    const prev = this.findNode(index - 1);
     if (prev && prev.next) {
-      let item = prev.next.value;
+      const item = prev.next.value;
       prev.next = prev.next.next;
-      this._length--;
+      this.length -= 1;
       return item;
     }
     return undefined;
   }
 
   locateItem(item: Types.Item): Types.Index {
-    let head = this._head;
+    let { head } = this;
     let count = 0;
     while (head) {
       if (item === head.value) {
         return count;
       }
-      count++;
+      count += 1;
       head = head.next;
     }
     throw new Error('Item not found.');

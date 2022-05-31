@@ -25,7 +25,7 @@ Lists.forEach((list) => {
 
     describe('clear()', () => {
       it('should works fine', () => {
-        let subject = new List();
+        const subject = new List();
         expect(subject.count()).toBe(0);
 
         subject.insertItem(0, 0);
@@ -37,7 +37,7 @@ Lists.forEach((list) => {
 
     describe('getItem()', () => {
       it('should works fine', () => {
-        let subject = new List();
+        const subject = new List();
         expect(subject.getItem(0)).toBe(undefined);
 
         subject.insertItem(0, 0);
@@ -56,7 +56,7 @@ Lists.forEach((list) => {
 
     describe('removeItem()', () => {
       it('should works fine', () => {
-        let subject = new List();
+        const subject = new List();
         expect(subject.removeItem(0)).toBe(undefined);
 
         subject.insertItem(0, 0);
